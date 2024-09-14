@@ -8,9 +8,9 @@ export const login = async(values: z.infer<typeof LoginSchema>): Promise<LoginRe
         const validatedFields = LoginSchema.safeParse(values);
         setTimeout(() => {
             if (!validatedFields.success) {
-                reject({ error: "invalid fields" });
+                reject({ error: "Login failed!" });
             } else {
-                resolve({ success: "Email sent!" });
+                resolve({ success: "Login successfully!" });
             }
         }, 1000);
     });
