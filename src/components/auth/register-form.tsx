@@ -31,17 +31,22 @@ export const RegisterForm = () =>{
             name: ""
         },
     });
-    const submitForm = (values: z.infer<typeof RegisterSchema>) => {
-        setError("");
-        setSuccess("");
-        startTransition(()=>{
-            register(values)
-                .then((data)=>{
+    const submitForm = async (values: z.infer<typeof RegisterSchema>) => {
+        setError(undefined);
+        setSuccess(undefined);
+        startTransition(async () => {
+            try {
+                const data = await register(values);
+                if (data.error) {
                     setError(data.error);
+                } else {
                     setSuccess(data.success);
-                })
-        })
-    }
+                }
+            } catch (err) {
+                setError("Something went wrong!");
+            }
+        });
+    };
     return (
         <CardWrapper
             headerLabel="Create an account"
