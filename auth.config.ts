@@ -1,12 +1,10 @@
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
-
- import { LoginSchema } from "@/schemas";
+import { LoginSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
 import bcrypt from "bcryptjs"
 import { NextAuthConfig } from "next-auth";
-// Notice this is only an object, not a full Auth.js instance
 export default {
   providers: [
     Google({
@@ -43,6 +41,7 @@ export default {
           return null;
           
         } catch (error) {
+          console.log(error,"error");
           return null
         }
       },
