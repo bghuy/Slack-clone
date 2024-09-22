@@ -18,8 +18,12 @@ export default {
       clientSecret: process.env.GITHUB_CLIENT_SECRET
     }),
     CredentialsProvider({
-      id: "domain-login",
-      name: "Domain Account",
+      // id: "domain-login",
+      // name: "Domain Account",
+      // credentials: {
+      //   email: { label: "Email", type: "text", placeholder: "you@example.com" },
+      //   password: { label: "Password", type: "password", placeholder: "your password" },
+      // },
       async authorize(credentials){
         try {
           const validatedFields = LoginSchema.safeParse(credentials);

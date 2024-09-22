@@ -18,6 +18,8 @@ import { FormError } from "../form-error"
 import { FormSuccess } from "../form-success"
 import { login } from "../../../actions/login"
 import { useState, useTransition } from "react"
+import { redirect } from 'next/navigation'
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 export const LoginForm = () =>{
     const [isPending,startTransition] = useTransition();
     const [error,setError] = useState<string | undefined>("");
@@ -32,12 +34,14 @@ export const LoginForm = () =>{
     const submitForm = (values: z.infer<typeof LoginSchema>) => {
         setError("");
         setSuccess("");
-        startTransition(()=>{
-            login(values)
-                .then((data)=>{
-                    setError(data?.error || "");
-                    setSuccess(data?.success || "" );
-                })
+        startTransition(async()=>{
+            const response = await login(values);
+            setError(response.error || "");
+            setSuccess(response.success || "");
+
+            if (response.success) {
+                redirect(DEFAULT_LOGIN_REDIRECT);
+            }
         })
     }
     return (
