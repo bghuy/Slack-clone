@@ -24,7 +24,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }
   },
   callbacks:{
-    // async signIn({user}){
+    // async signIn({user, account}){
+    //   if(account?.provider !== "credentials") return true;
     //   if (!user.id) {
     //     return false;
     //   }
@@ -32,6 +33,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     //   if(!existingUser || !existingUser.emailVerified){
     //     return false;
     //   }
+    //   //TODO: Add 2FA check
     //   return true
     // },
     async session({session,token}){
