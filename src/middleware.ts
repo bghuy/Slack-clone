@@ -17,9 +17,9 @@ export default auth((req) => {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-    if (req.headers.get('Upgrade') === 'websocket') {
-        return NextResponse.next(); // Allow WebSocket requests to pass through
-    }
+    // if (req.headers.get('Upgrade') === 'websocket') {
+    //     return NextResponse.next(); // Allow WebSocket requests to pass through
+    // }
 
     console.log(nextUrl.pathname, "Route");
 
@@ -42,7 +42,8 @@ export default auth((req) => {
 });
 
 export const config = {
-    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    // matcher: ['/((?!.*\\..[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    matcher: ["/((?!.*\\..*|_next).*)","/","/(api|trpc)(.*)"],
 };
 
 // matcher: [

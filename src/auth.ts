@@ -36,6 +36,13 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     //   //TODO: Add 2FA check
     //   return true
     // },
+    // async signIn({user,account,email,profile}){
+    //   console.log(user, "user");
+    //   console.log(account, "account");
+    //   console.log(email,"email");
+    //   console.log(profile, "profile");
+    //   return true;
+    // },
     async session({session,token}){
       if(token.sub && session.user){
         session.user.id = token.sub;
