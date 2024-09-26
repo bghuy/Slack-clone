@@ -21,7 +21,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         where: {id: user.id},
         data: {emailVerified: new Date()}
       })
-    }
+    },
   },
   callbacks:{
     // async signIn({user, account}){

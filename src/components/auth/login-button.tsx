@@ -9,7 +9,8 @@ interface LoginButtonProps {
 export const LoginButton = ({
     children,
     mode = "redirect",
-    asChild}:LoginButtonProps)=>{
+    asChild
+}:LoginButtonProps)=>{
     const router = useRouter();
     const OnClick = () =>{
         router.push("/auth/login")

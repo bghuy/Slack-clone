@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/mode-toggle";
+// import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -8,14 +8,14 @@ const ProtectedLayout = ({children}:{children: React.ReactNode}) => {
         <div className={cn(
             "h-full",
             "bg-white dark:bg-[#313338]"
-        )} suppressHydrationWarning>
+        )} >
             <ThemeProvider
                 attribute= "class"
-                defaultTheme= "light"
+                defaultTheme= "dark"
                 enableSystem= {false}
                 storageKey="discord-theme"
             >
-                <ModeToggle/>
+                {/* <ModeToggle/> */}
                 {children}
             </ThemeProvider>
         </div>
