@@ -30,7 +30,7 @@ export const NavigationSidebar = async() =>{
             />
             <ScrollArea className="flex-1 w-full">
                 {servers.map((server)=>(
-                    <div key={server.id}>
+                    <div key={server.id} className="my-2">
                         <NavigationItem
                             id={server.id}
                             name={server.name}

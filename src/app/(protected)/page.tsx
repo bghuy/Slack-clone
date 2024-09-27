@@ -1,7 +1,8 @@
+
 export default function ProtectedPage () {
     return(
         <div>
-            hello
+            {/* <ModalProvider/> */}
         </div>
     )
 }
