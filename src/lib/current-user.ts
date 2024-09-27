@@ -12,8 +12,6 @@ export const currentUser = async () =>{
                 id: id
             }
         })
-        console.log(user,"user");
-        console.log(session.user,"session user");
         return user
     } catch (error) {
         console.log(error)

@@ -8,7 +8,10 @@ export async function POST(req: Request){
     try {
         const {name, imageUrl} = await req.json();
         const user = await currentUser();
-        if(!user) return new NextResponse("Unauthorized", {status: 401});
+        if(!user) {
+            console.log("401 error");
+            return new NextResponse("Unauthorized", {status: 401});
+        }
         const server = await db.server.create({
             data: {
                 userId: user.id,
