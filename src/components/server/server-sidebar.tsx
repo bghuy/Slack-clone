@@ -1,7 +1,7 @@
 import { currentUser } from "@/lib/current-user"
 import { db } from "@/lib/db";
 import { ChannelType } from "@prisma/client";
-import { channel } from "diagnostics_channel";
+import { Channel } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { ServerHeader } from "./server-header";
 
