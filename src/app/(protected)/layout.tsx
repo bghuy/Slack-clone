@@ -1,5 +1,6 @@
 // import { ModeToggle } from "@/components/mode-toggle";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { SocketProvider } from "@/components/providers/socket-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -16,8 +17,10 @@ const ProtectedLayout = ({children}:{children: React.ReactNode}) => {
                 enableSystem= {false}
                 storageKey="discord-theme"
             >
-                <ModalProvider/>
-                {children}
+                <SocketProvider>
+                    <ModalProvider/>
+                    {children}
+                </SocketProvider>
             </ThemeProvider>
 
             

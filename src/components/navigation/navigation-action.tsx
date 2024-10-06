@@ -7,13 +7,9 @@ import { useModal } from "../../../hooks/use-modal-store"
 export const NavigationAction = ()=>{
     const {onOpen ,isOpen , type} = useModal();
     const handleOpen = ()=>{
-        console.log("1");
         onOpen("CreateServer");
-        console.log("2");
-
         console.log(isOpen, "isOpen");
-        console.log(type, "type");
-                
+        console.log(type, "type");       
     }
     return(
         <div>

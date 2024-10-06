@@ -21,7 +21,6 @@ export const ServerSection = ({
     server
 }: ServerSectionProps) => {
     const {onOpen} = useModal();
-    console.log(server,"server");
     return(
         <div className="flex items-center justify-between py-2">
             <p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400">
