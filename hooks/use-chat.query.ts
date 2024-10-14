@@ -43,7 +43,7 @@ export const useChatQuery = ({
         refetchInterval: isConnected? false: 1000,
         initialPageParam: undefined,
     })
-    
+    console.log(data,"data")
     return{
         data,
         fetchNextPage,

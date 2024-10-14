@@ -5,7 +5,10 @@ import { ChatWelcome } from "./chat-welcome";
 import { useChatQuery } from "../../../hooks/use-chat.query";
 import { Loader2, ServerCrash } from "lucide-react";
 import { Fragment } from "react";
+import { ChatItem } from "./chat-item";
+import {format } from "date-fns"
 
+const DATE_FORMAT = "d MMM yyy, HH:mm";
 type MessageWithMemberWithUser = Message & {
     member: Member & {
         user: User
@@ -73,6 +76,8 @@ export const ChatMessages = ({
             </div>
         )
     }
+    console.log(data,"data");
+    
     return(
         <div className="flex-1 flex flex-col py-4 overflow-y-auto">
             <div className="flex-1"/>
@@ -84,9 +89,19 @@ export const ChatMessages = ({
                 {data?.pages?.map((group,i)=>(
                     <Fragment key={i}>
                         {group.items.map((message: MessageWithMemberWithUser)=> (
-                            <div key={message.id}>
-                                {message.content}
-                            </div>
+                            <ChatItem 
+                                id={message.id}
+                                key={message.id}
+                                currentMember={member}
+                                member={message.member}
+                                content={message.content}
+                                fileUrl={message.fileUrl}
+                                deleted = {message.deleted}
+                                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
+                                isUpdated = {message.updatedAt !== message.createdAt}
+                                socketUrl={socketUrl}
+                                socketQuery={socketQuery}
+                            />
                         ))}
                     </Fragment>
                 ))}
