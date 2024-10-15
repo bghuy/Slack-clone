@@ -2,11 +2,12 @@
 
 import { Member, Message, User } from "@prisma/client"
 import { ChatWelcome } from "./chat-welcome";
-import { useChatQuery } from "../../../hooks/use-chat.query";
+import { useChatQuery } from "../../../hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import { Fragment } from "react";
 import { ChatItem } from "./chat-item";
 import {format } from "date-fns"
+import { useChatSocket } from "../../../hooks/use-chat-socket";
 
 const DATE_FORMAT = "d MMM yyy, HH:mm";
 type MessageWithMemberWithUser = Message & {
@@ -39,6 +40,9 @@ export const ChatMessages = ({
     type
 }: ChatMessagesProps) =>{
     const queryKey = `chat:${chatId}`;
+    const addKey = `chat:${chatId}:messages`;
+    const updateKey = `chat:${chatId}:messages:update`
+    
     const {
         data,
         fetchNextPage,
@@ -51,6 +55,8 @@ export const ChatMessages = ({
         paramKey,
         paramValue
     });
+
+    useChatSocket({addKey,updateKey,queryKey})
 
     if(status  === "pending"){
         return(
@@ -76,7 +82,6 @@ export const ChatMessages = ({
             </div>
         )
     }
-    console.log(data,"data");
     
     return(
         <div className="flex-1 flex flex-col py-4 overflow-y-auto">
