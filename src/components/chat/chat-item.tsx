@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useModal } from "../../../hooks/use-modal-store";
 
 interface ChatItemProps {
     id: string;
@@ -55,7 +56,7 @@ export const ChatItem = ({
     socketQuery,
 }: ChatItemProps) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [isDeleting, setIsDeleting] = useState(false);
+    const {onOpen} = useModal();
 
     const form = useForm<z.infer <typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -226,6 +227,10 @@ export const ChatItem = ({
                         label="Delete"
                     >
                         <Trash
+                            onClick={()=>onOpen("DeleteMessage",{
+                                apiUrl: `${socketUrl}/${id}`,
+                                query: socketQuery
+                            })}
                             className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-300 transition"
                         />
                     </ActionTooltip>
