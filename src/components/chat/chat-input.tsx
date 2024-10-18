@@ -39,7 +39,6 @@ export const ChatInput = ({
     const isLoading = form.formState.isSubmitting;
     const submitForm = async (values: z.infer<typeof formSchema>) =>{
         try {
-            console.log(values,"values");
             const url = qs.stringifyUrl({
                 url: apiUrl,
                 query,

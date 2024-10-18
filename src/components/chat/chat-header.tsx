@@ -1,7 +1,10 @@
+
 import { Hash } from "lucide-react"
 import { MobileToggle } from "../mobile-toggle";
 import { UserAvatar } from "../user-avatar";
 import { SocketIndicator } from "../socket-indicator";
+// import { ChatVideoButton } from "./chat-video-button";
+import { ChatVideoWrapper } from "./ChatVideoButtonWrapper";
 
 interface ChatHeaderProps {
     serverId: string;
@@ -32,6 +35,9 @@ export const ChatHeader = ({
                 {name}
             </p>
             <div className="ml-auto flex items-center">
+                {type === "conversation" && (
+                    <ChatVideoWrapper/>
+                )}
                 <SocketIndicator/>
             </div>
         </div>
